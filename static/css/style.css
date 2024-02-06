@@ -1,0 +1,34 @@
+/* static/css/style.css */
+
+.movie-container {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.row {
+    margin: 0 -15px;
+}
+
+.col-md-3 {
+    width: 25%;
+    padding: 0 15px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.movie-image {
+    width: 70%;
+    /* max-height: 200px; Atur tinggi maksimum sesuai kebutuhan Anda */
+    object-fit: cover; /* Untuk mempertahankan aspek rasio gambar */
+}
+
+.movie-details {
+    margin-top: 20px;
+}
+
+.movie-details-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+}

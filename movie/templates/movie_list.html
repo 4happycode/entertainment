@@ -1,0 +1,56 @@
+<!-- templates/movie/movie_list.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}List of Movies{% endblock %}
+
+{% block content %}
+    <div class="row" style="margin:25px;">
+        <div class="col-md-3">
+            <input type="text" id="searchInput" placeholder="Search by movie name...">
+        </div>
+        <hr/>
+    </div>
+  
+    <div class="row movie-container" style="margin:25px;">
+        <h2>Popular Movies this month</h2>
+        {% for movie in movies %}
+          <div class="col-md-3">
+            <div class="movie">
+                <a href="{% url 'movies_detail' movie_id=movie.id %}">
+                    <img src="{{ movie.imgPath.url }}" alt="{{ movie.name }}" class="img-fluid movie-image">
+                    <h3 class="movie-name">{{ movie.name }}</h3>
+                    <p>{{ movie.duration }} min</p>
+                    <p>User Rating: {{ movie.userRating }}</p>
+                </a>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const movies = document.querySelectorAll('.movie');
+
+        searchInput.addEventListener('input', function() {
+            filterMovies(searchInput.value.toLowerCase());
+        });
+
+        function filterMovies(searchTerm) {
+            movies.forEach(function(movie) {
+                const title = movie.querySelector('.movie-name').textContent.toLowerCase();
+                const container = movie.closest('.col-md-3'); // Find div col-md-3
+        
+                if (title.includes(searchTerm)) {
+                    container.style.display = 'block'; // Show container
+                    movie.style.display = 'block'; // Show Movies
+                } else {
+                    container.style.display = 'none'; // Hide movies
+                }
+            });
+        }
+    });
+</script>
+
+{% endblock %}
